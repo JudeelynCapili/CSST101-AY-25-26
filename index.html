@@ -145,6 +145,56 @@
         font-weight: 300;
       }
 
+      /* Project Cards */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .project-card {
+        background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        cursor: pointer;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--pink-color);
+        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+      }
+
+      .project-icon {
+        font-size: 3rem;
+        color: var(--pink-color);
+        margin-bottom: 1rem;
+      }
+
+      .project-card h3 {
+        color: var(--light-pink);
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .project-card p {
+        color: var(--text-color);
+        font-size: 0.9rem;
+        font-weight: 300;
+      }
+
+      .project-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
       footer {
         background-color: black;
         color: var(--text-color);
@@ -185,6 +235,10 @@
       @media (max-width: 768px) {
         h1 {
           font-size: 2.5rem;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -242,16 +296,54 @@
       <div class="section-title">
         <h2>My Projects</h2>
       </div>
-      <div class="about-content">
-        <p>
-          Here are some of the projects I've completed during my CSST102 course:
-        </p>
-        <ul>
-          <li>Personal Portfolio Website</li>
-          <li>E-commerce Product Page</li>
-          <li>Interactive Web Application</li>
-          <li>Responsive Design Project</li>
-        </ul>
+      <div class="projects-grid">
+        <a href="./activity1/index.html" class="project-link">
+          <div class="project-card">
+            <div class="project-icon">📁</div>
+            <h3>Activity 1</h3>
+            <p>Introduction to AI Concepts</p>
+          </div>
+        </a>
+
+        <a href="./activity2/index.html" class="project-link">
+          <div class="project-card">
+            <div class="project-icon">📁</div>
+            <h3>Activity 2</h3>
+            <p>Machine Learning Basics</p>
+          </div>
+        </a>
+
+        <a href="./activity3/index.html" class="project-link">
+          <div class="project-card">
+            <div class="project-icon">📁</div>
+            <h3>Activity 3</h3>
+            <p>Neural Networks</p>
+          </div>
+        </a>
+
+        <a href="./activity4/index.html" class="project-link">
+          <div class="project-card">
+            <div class="project-icon">📁</div>
+            <h3>Activity 4</h3>
+            <p>Deep Learning Applications</p>
+          </div>
+        </a>
+
+        <a href="./activity5/index.html" class="project-link">
+          <div class="project-card">
+            <div class="project-icon">📁</div>
+            <h3>Activity 5</h3>
+            <p>AI Project Implementation</p>
+          </div>
+        </a>
+
+        <a href="./activity6/index.html" class="project-link">
+          <div class="project-card">
+            <div class="project-icon">📁</div>
+            <h3>Activity 6</h3>
+            <p>Advanced AI Techniques</p>
+          </div>
+        </a>
       </div>
     </section>
 
