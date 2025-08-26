@@ -13,27 +13,57 @@
     <style>
       :root {
         --pink-color: #ff69b4;
-        --dark-color: #121212;
+        --dark-color: #0a0a0a;
+        --card-bg: #1a1a2e;
         --light-pink: #ffb6c1;
         --text-color: #f5f5f5;
+        --accent-purple: #9b59b6;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
 
       body {
         font-family: "Poppins", sans-serif;
         background-color: var(--dark-color);
         color: var(--text-color);
-        margin: 0;
-        padding: 0;
         line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Animated background */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 50%,
+            rgba(255, 105, 180, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(155, 89, 182, 0.1) 0%,
+            transparent 50%
+          );
+        z-index: -1;
       }
 
       header {
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.95);
         padding: 1rem 0;
         position: fixed;
         width: 100%;
         top: 0;
         z-index: 100;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(255, 105, 180, 0.1);
       }
 
       nav {
@@ -45,9 +75,29 @@
       nav a {
         color: var(--text-color);
         text-decoration: none;
-        margin: 0 1.5rem;
+        margin: 0 2rem;
         font-weight: 500;
-        transition: color 0.3s;
+        transition: all 0.3s;
+        position: relative;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--pink-color),
+          var(--accent-purple)
+        );
+        transition: width 0.3s;
+      }
+
+      nav a:hover::after {
+        width: 100%;
       }
 
       nav a:hover {
@@ -66,11 +116,39 @@
           url("background.jpg");
         background-size: cover;
         background-position: center;
+        position: relative;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at center,
+          transparent 0%,
+          rgba(0, 0, 0, 0.5) 100%
+        );
       }
 
       .profile-container {
         margin-bottom: 2rem;
         position: relative;
+        z-index: 1;
+        animation: fadeInDown 1s ease-out;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .profile-img {
@@ -78,132 +156,275 @@
         height: 200px;
         border-radius: 50%;
         object-fit: cover;
-        border: 4px solid var(--pink-color);
+        border: 5px solid transparent;
+        background: linear-gradient(white, white) padding-box,
+          linear-gradient(135deg, var(--pink-color), var(--accent-purple))
+            border-box;
+        box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+        transition: transform 0.3s;
+      }
+
+      .profile-img:hover {
+        transform: scale(1.05);
       }
 
       h1 {
-        font-size: 3rem;
+        font-size: 3.5rem;
         margin: 0;
-        color: var(--pink-color);
+        background: linear-gradient(
+          135deg,
+          var(--pink-color),
+          var(--accent-purple)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         font-weight: 700;
+        z-index: 1;
+        position: relative;
+        animation: fadeInUp 1s ease-out 0.2s backwards;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       h2 {
         color: var(--light-pink);
         margin-top: 0.5rem;
         font-weight: 600;
+        z-index: 1;
+        position: relative;
+        animation: fadeInUp 1s ease-out 0.4s backwards;
+      }
+
+      .hero p {
+        z-index: 1;
+        position: relative;
+        animation: fadeInUp 1s ease-out 0.6s backwards;
       }
 
       .btn {
         display: inline-block;
-        background-color: var(--pink-color);
+        background: linear-gradient(
+          135deg,
+          var(--pink-color),
+          var(--accent-purple)
+        );
         color: white;
-        padding: 0.8rem 1.8rem;
-        border-radius: 30px;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
         text-decoration: none;
         font-weight: 600;
-        margin-top: 1.5rem;
+        margin-top: 2rem;
         transition: all 0.3s;
+        box-shadow: 0 5px 25px rgba(255, 105, 180, 0.4);
+        z-index: 1;
+        position: relative;
+        animation: fadeInUp 1s ease-out 0.8s backwards;
       }
 
       .btn:hover {
-        background-color: var(--light-pink);
-        transform: translateY(-3px);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 35px rgba(255, 105, 180, 0.6);
       }
 
       .section {
-        padding: 5rem 2rem;
+        padding: 6rem 2rem;
       }
 
       .section-title {
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
       }
 
       .section-title h2 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
         display: inline-block;
         position: relative;
-        padding-bottom: 0.5rem;
-        font-weight: 600;
+        padding-bottom: 1rem;
+        font-weight: 700;
+        background: linear-gradient(
+          135deg,
+          var(--pink-color),
+          var(--accent-purple)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .section-title h2::after {
         content: "";
         position: absolute;
-        left: 25%;
+        left: 50%;
+        transform: translateX(-50%);
         bottom: 0;
-        width: 50%;
-        height: 3px;
-        background-color: var(--pink-color);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--pink-color),
+          var(--accent-purple)
+        );
+        border-radius: 2px;
       }
 
       .about-content {
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
         font-weight: 300;
+        background: rgba(26, 26, 46, 0.6);
+        padding: 3rem;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 105, 180, 0.1);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .about-content p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
       }
 
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 1rem;
       }
 
+      .project-link {
+        text-decoration: none;
+        color: inherit;
+      }
+
       .project-card {
-        background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
-        border-radius: 15px;
-        padding: 2rem;
+        background: linear-gradient(
+          145deg,
+          rgba(26, 26, 46, 0.9),
+          rgba(45, 45, 75, 0.9)
+        );
+        border-radius: 20px;
+        padding: 2.5rem;
         text-align: center;
-        transition: all 0.3s ease;
+        transition: all 0.4s ease;
         border: 2px solid transparent;
         cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          var(--pink-color),
+          var(--accent-purple)
+        );
+        opacity: 0;
+        transition: opacity 0.4s;
+        z-index: 0;
+      }
+
+      .project-card:hover::before {
+        opacity: 0.1;
       }
 
       .project-card:hover {
-        transform: translateY(-10px);
+        transform: translateY(-15px) scale(1.02);
         border-color: var(--pink-color);
-        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        box-shadow: 0 20px 50px rgba(255, 105, 180, 0.4);
       }
 
       .project-icon {
-        font-size: 3rem;
-        color: var(--pink-color);
-        margin-bottom: 1rem;
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+        transition: transform 0.4s;
+      }
+
+      .project-card:hover .project-icon {
+        transform: scale(1.2) rotate(10deg);
       }
 
       .project-card h3 {
         color: var(--light-pink);
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
         font-weight: 600;
+        font-size: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .project-card p {
+        color: rgba(245, 245, 245, 0.8);
+        position: relative;
+        z-index: 1;
+        font-size: 1rem;
       }
 
       footer {
-        background-color: black;
+        background-color: rgba(0, 0, 0, 0.95);
         color: var(--text-color);
         text-align: center;
-        padding: 2rem 0;
+        padding: 2.5rem 0;
         font-weight: 300;
+        border-top: 1px solid rgba(255, 105, 180, 0.2);
       }
 
       .github-btn {
         display: inline-block;
-        background-color: #24292f;
+        background: linear-gradient(135deg, #24292f, #444c56);
         color: white;
         text-decoration: none;
-        padding: 12px 24px;
-        border-radius: 6px;
-        font-weight: bold;
-        margin-top: 1.5rem;
+        padding: 14px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-top: 2rem;
         transition: all 0.3s;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
       }
 
       .github-btn:hover {
-        background-color: #444c56;
-        transform: translateY(-2px);
+        background: linear-gradient(135deg, #444c56, #24292f);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        nav a {
+          margin: 0 1rem;
+        }
       }
     </style>
   </head>
@@ -266,9 +487,9 @@
           target="_blank"
         >
           <div class="project-card">
-            <div class="project-icon">📁</div>
+            <div class="project-icon">🧠</div>
             <h3>Activity 1</h3>
-            <p>Introduction to AI Concepts</p>
+            <p>Propositional Logic</p>
           </div>
         </a>
 
@@ -278,9 +499,9 @@
           target="_blank"
         >
           <div class="project-card">
-            <div class="project-icon">📁</div>
+            <div class="project-icon">�</div>
             <h3>Activity 2</h3>
-            <p>AI Case Study Analysis</p>
+            <p>Predicate Logic</p>
           </div>
         </a>
 
@@ -290,9 +511,9 @@
           target="_blank"
         >
           <div class="project-card">
-            <div class="project-icon">📁</div>
+            <div class="project-icon">⚡</div>
             <h3>Activity 3</h3>
-            <p>Propositional Logic</p>
+            <p>Rule-Based Reasoning</p>
           </div>
         </a>
 
@@ -302,39 +523,15 @@
           target="_blank"
         >
           <div class="project-card">
-            <div class="project-icon">📁</div>
+            <div class="project-icon">🎯</div>
             <h3>Activity 4</h3>
-            <p>Probability Theory in AI</p>
-          </div>
-        </a>
-
-        <a
-          href="https://github.com/JudeelynCapili/CSST101-AY-25-26/tree/main/Activity5"
-          class="project-link"
-          target="_blank"
-        >
-          <div class="project-card">
-            <div class="project-icon">📁</div>
-            <h3>Activity 5</h3>
-            <p>AI Project Implementation</p>
-          </div>
-        </a>
-
-        <a
-          href="https://github.com/JudeelynCapili/CSST101-AY-25-26/tree/main/Activity6"
-          class="project-link"
-          target="_blank"
-        >
-          <div class="project-card">
-            <div class="project-icon">📁</div>
-            <h3>Activity 6</h3>
-            <p>Advanced AI Techniques</p>
+            <p>Monotonic vs Non Monotonic</p>
           </div>
         </a>
       </div>
     </section>
 
-    <footer>
+    <footer id="contact">
       <p>&copy; 2025 Judeelyn M. Capili | CSST101 Portfolio</p>
     </footer>
 
