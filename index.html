@@ -353,16 +353,72 @@
         box-shadow: 0 20px 50px rgba(255, 105, 180, 0.4);
       }
 
-      .project-icon {
-        font-size: 4rem;
-        margin-bottom: 1.5rem;
+      .folder-icon-container {
         position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 1.5rem;
         z-index: 1;
-        transition: transform 0.4s;
       }
 
-      .project-card:hover .project-icon {
-        transform: scale(1.2) rotate(10deg);
+      .folder-icon {
+        position: relative;
+        width: 120px;
+        height: 100px;
+        background: linear-gradient(
+          135deg,
+          var(--pink-color),
+          var(--accent-purple)
+        );
+        border-radius: 8px;
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+      }
+
+      .folder-icon::before {
+        content: "";
+        position: absolute;
+        top: -12px;
+        left: 0;
+        width: 50px;
+        height: 15px;
+        background: linear-gradient(
+          135deg,
+          var(--pink-color),
+          var(--accent-purple)
+        );
+        border-radius: 4px 4px 0 0;
+      }
+
+      .folder-icon::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+
+      .activity-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem;
+        z-index: 2;
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+        transition: all 0.4s ease;
+      }
+
+      .project-card:hover .folder-icon {
+        transform: scale(1.1) rotateY(15deg);
+        box-shadow: 0 15px 40px rgba(255, 105, 180, 0.5);
+      }
+
+      .project-card:hover .activity-icon {
+        transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
       }
 
       .project-card h3 {
@@ -487,7 +543,10 @@
           target="_blank"
         >
           <div class="project-card">
-            <div class="project-icon">🧠</div>
+            <div class="folder-icon-container">
+              <div class="folder-icon"></div>
+              <div class="activity-icon">🧠</div>
+            </div>
             <h3>Activity 1</h3>
             <p>Propositional Logic</p>
           </div>
@@ -499,7 +558,10 @@
           target="_blank"
         >
           <div class="project-card">
-            <div class="project-icon">�</div>
+            <div class="folder-icon-container">
+              <div class="folder-icon"></div>
+              <div class="activity-icon">🔍</div>
+            </div>
             <h3>Activity 2</h3>
             <p>Predicate Logic</p>
           </div>
@@ -511,7 +573,10 @@
           target="_blank"
         >
           <div class="project-card">
-            <div class="project-icon">⚡</div>
+            <div class="folder-icon-container">
+              <div class="folder-icon"></div>
+              <div class="activity-icon">⚡</div>
+            </div>
             <h3>Activity 3</h3>
             <p>Rule-Based Reasoning</p>
           </div>
@@ -523,7 +588,10 @@
           target="_blank"
         >
           <div class="project-card">
-            <div class="project-icon">🎯</div>
+            <div class="folder-icon-container">
+              <div class="folder-icon"></div>
+              <div class="activity-icon">🎯</div>
+            </div>
             <h3>Activity 4</h3>
             <p>Monotonic vs Non Monotonic</p>
           </div>
